@@ -599,7 +599,7 @@ public class Modules extends System<Modules> {
         add(new Spam());
     }
     private void initOwo() {
-        add(new MaceDMG());
+        add(new Test());
     }
 
     public static class ModuleRegistry extends SimpleRegistry<Module> {
