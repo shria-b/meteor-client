@@ -5,9 +5,11 @@
 
 package meteordevelopment.meteorclient.systems.modules.owo;
 
+import meteordevelopment.meteorclient.events.game.GameLeftEvent;
 import meteordevelopment.meteorclient.settings.*;
 import meteordevelopment.meteorclient.systems.modules.Categories;
 import meteordevelopment.meteorclient.systems.modules.Module;
+import meteordevelopment.orbit.EventHandler;
 
 public class RunAway extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
@@ -42,6 +44,10 @@ public class RunAway extends Module {
             case Exception.IllegalArgumentException:
                 throw new IllegalArgumentException("What Happened There");
         }
+    }
+    @EventHandler
+    private void onGameLeft(GameLeftEvent event) {
+        toggle();
     }
     public enum Exception {
         NullPoint,
