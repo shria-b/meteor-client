@@ -14,6 +14,8 @@ import meteordevelopment.meteorclient.systems.modules.Categories;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.meteorclient.utils.player.InvUtils;
 import meteordevelopment.orbit.EventHandler;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.MaceItem;
 public class MaceDMG extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
     
@@ -53,7 +55,7 @@ public class MaceDMG extends Module {
 			sendFakeY(0);
 		int oldSlot = mc.player.getInventory().selectedSlot;
 		if(autoSwitch.get()) {
-			InvUtils.swap(8, false);
+			InvUtils.swap(this.getMaceslot(), false);
 		}
 		if(limit.get()) {
 		    sendFakeY(Math.sqrt(500));
@@ -73,4 +75,13 @@ public class MaceDMG extends Module {
 	{
 		mc.player.networkHandler.sendPacket(new PositionAndOnGround(mc.player.getX(), mc.player.getY() + offset, mc.player.getZ(), false));//this is copied from wurst
 	}
+	private int getMaceslot() {
+        for (int i = 0; i < 9; i++) {
+            ItemStack stack = mc.player.getInventory().getStack(i);
+            if (stack.getItem() instanceof MaceItem) {
+                return i;
+            }
+        }
+        return mc.player.getInventory().selectedSlot;
+    }
 }

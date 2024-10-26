@@ -600,6 +600,8 @@ public class Modules extends System<Modules> {
     }
     private void initOwo() {
         add(new MaceDMG());
+        add(new RunAway());
+        add(new CancelPacket());
     }
 
     public static class ModuleRegistry extends SimpleRegistry<Module> {
